@@ -8,10 +8,14 @@ public class Request implements IRequest {
     private static int type;
 
     public static IRequest createRequest(int type, String studentID, String courseID) {
-        Request.studentID = studentID;
-        Request.courseID = courseID;
-        Request.type = type;
-        throw new RuntimeException("xxxxxxxx");
+        IRequest tmp = new Request();
+        //Request.studentID = studentID;
+        tmp.setCourseID(courseID);
+        //Request.courseID = courseID;
+        tmp.setStudentID(studentID);
+        //Request.type = type;
+        tmp.setType(type);
+        return tmp;
     }
 
     protected Request()
@@ -29,8 +33,7 @@ public class Request implements IRequest {
         if (null != studentID){
             this.studentID = studentID;
             return studentID;
-        }
-       throw new RuntimeException("XXX");
+        } else throw new RuntimeException();
     }
 
     @Override
@@ -48,5 +51,13 @@ public class Request implements IRequest {
     @Override
     public int getRequestType() {
         return type;
+    }
+
+    @Override
+    public int setType(int type) {
+        if (type == 1 || type == 2) {
+            this.type = type;
+            return type;
+    } else throw new RuntimeException();
     }
 }
